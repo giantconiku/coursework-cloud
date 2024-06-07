@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - User Portal</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages-style.css}">
+</head>
+
+<body>
+<div class="header">
+    <span class="title">USER PORTAL</span>
+    <a th:href="@{/logout}" class="logout-button" th:text="Logout"></a>
+</div>
+<div class="container">
+    <a th:href="@{/displayProfile}" class="button profile-button" th:text="Profile"></a>
+    <a th:href="@{/admin/displayUsers}" class="button users-button" th:text="Users"></a>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register-login-style.css}">
+</head>
+
+<body>
+<div class="container">
+    <div class="register-box">
+        <h2>Register</h2>
+        <ul>
+            <li th:each="error : ${#fields.errors('user.*')}" th:text="${error}"></li>
+        </ul>
+        <form th:action="@{/public/createUser}" method="post" th:object="${user}">
+            <div class="input-row">
+                <div class="input-group">
+                    <input type="text" th:field="*{firstName}" placeholder="First Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" th:field="*{fathersName}" placeholder="Father's Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" th:field="*{lastName}" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" th:field="*{email}" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <input type="date" th:field="*{birthday}" placeholder="Birthday" required>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <input type="password" th:field="*{password}" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        <div class="login-link">
+            <a th:href="@{/login}">Already have an account? Login here.</a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  spring-boot-app:
+    container_name: user-portal-app
+    image: userportal
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://user-portal-db:3306/userportal
+      SPRING_DATASOURCE_USERNAME: giant
+      SPRING_DATASOURCE_PASSWORD: u$erp0rt@1
+
+  mysql-db:
+    container_name: user-portal-db
+    image: mysql:8.3.0
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_DATABASE: userportal
+      MYSQL_USER: giant
+      MYSQL_PASSWORD: u$erp0rt@1
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

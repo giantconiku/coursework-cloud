@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile - User Portal</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages-style.css}">
+</head>
+
+<body>
+<div class="header-profile">
+    <h1 class="title">User Portal</h1>
+    <a th:href="@{/logout}" class="logout-button" th:text="Logout"></a>
+</div>
+<div class="profile-image-container">
+    <img th:src="@{'media/profile-pictures/' + ${profile.profileImagePath}}" alt="Profile Image" class="profile-image" id="profileImage">
+</div>
+<div class="container">
+    <div class="profile-box">
+        <h3>My Profile</h3>
+        <ul>
+            <li th:each="error : ${#fields.errors('profile.*')}" th:text="${error}"></li>
+        </ul>
+        <div class="profile-container">
+            <div class="profile-form-container">
+                <form th:action="@{/updateProfile}" method="post" th:object="${profile}" enctype="multipart/form-data">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="profile-photo">Profile Photo:</label>
+                            <input type="file" name="profile-photo" id="profile-photo" placeholder="Upload Profile Photo" accept="image/jpeg,image/png">
+                        </div>
+                        <div class="input-group">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name:" required />
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="fathersName">Father's Name:</label>
+                            <input type="text" th:field="*{fathersName}" id="fathersName" placeholder="Father's Name" required />
+                        </div>
+                        <div class="input-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" required />
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="phoneNumber">Phone Number:</label>
+                            <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Phone Number" required />
+                        </div>
+                        <div class="input-group">
+                            <label for="birthday">Birthday:</label>
+                            <input type="date" th:field="*{birthday}" id="birthday" placeholder="Birthday" required />
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" th:field="*{email}" id="email" placeholder="Email" required />
+                        </div>
+                        <div class="input-group">
+                            <button type="submit" class="submit-button">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
